@@ -9,13 +9,10 @@ package entorno;
 import java.awt.*; 
 import java.awt.event.*; 
 import javax.swing.*; 
-import javax.swing.event.*; 
 import com.sun.j3d.utils.geometry.*; 
 import com.sun.j3d.utils.universe.*; 
 import com.sun.j3d.utils.image.*; 
-import estados.EstadoGeneral;
 import javax.media.j3d.*; 
-import javax.vecmath.*;
 import logica.MaquinaTamagochi;
 
 

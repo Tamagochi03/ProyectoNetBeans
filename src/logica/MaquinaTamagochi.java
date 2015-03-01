@@ -13,6 +13,7 @@ public class MaquinaTamagochi {
     Estado jugando;
     Estado muerto;
     Estado normal;
+    MonitorDeEstados monitor;
 
     TransformGroup tg;
     JLabel mensaje;
@@ -60,9 +61,10 @@ public class MaquinaTamagochi {
         hiloSueno = new BarraSueno(sueno, this);
         hiloAburrimiento = new BarraAburrimiento(aburrimiento, this);
         
-        
         mensajeEstado = estado; //TODO: delete
         estado.setText(getNombreEstado()); //TODO:delete
+        
+        monitor = new MonitorDeEstados(this, this.mensajeEstado);
     }
 
     public void dormir() {

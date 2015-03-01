@@ -6,7 +6,6 @@
 
 package estados;
 
-import java.awt.Label;
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
 
@@ -47,6 +46,7 @@ public class Jugando extends EstadoGeneral implements Estado, Runnable{
             Thread.sleep(5000);
             getTama().getHiloEneregia().decremento(10);
             getTama().getHiloHambre().incremento(20);
+            getTama().getHiloHambre().decremento(40);
             //TODO: Añadir aquí transformación sobre el modelo
             setEstado(getTama().getNormal());
         }catch (Exception e){

@@ -19,7 +19,6 @@ import logica.MaquinaTamagochi;
 public class EstadoGeneral {
     private TransformGroup tg;
     private MaquinaTamagochi tama;
-    private int energia;
     private JLabel mensajePensamiento;
 
     public TransformGroup getTg() {
@@ -37,15 +36,6 @@ public class EstadoGeneral {
     public void setTama(MaquinaTamagochi tama) {
         this.tama = tama;
     }
-    
-//TODO:delete if energia is never used
-//    public int getEnrgia() {
-//        return energia;
-//    }
-//
-//    public void setEnrgia(int energia) {
-//        this.energia = energia;
-//    }
 
     public JLabel getMensajePensamiento() {
         return mensajePensamiento;
@@ -59,15 +49,25 @@ public class EstadoGeneral {
         if (estado instanceof Normal || estado instanceof Cansado || estado instanceof Hambriento) {
             if (tama.getEnergia() <= 0) {
                 estado = tama.getMuerto();
-            } else if (tama.getHambre() > 50) {
+            } else if (tama.getHambre() > 40) {
                 estado = tama.getHambriento();
-                tama.getHiloEneregia().setVelocidad(tama.getHiloEneregia().getVelocidad() / 3);
-            } else if (tama.getSueno() > 80) {
+                tama.getHiloEneregia().decremento(3);
+                //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(10);
+            } else if (tama.getSueno() > 70) {
                 estado = tama.getCansado();
-                tama.getHiloEneregia().setVelocidad(tama.getHiloEneregia().getVelocidad() / 2);
+                tama.getHiloEneregia().decremento(2);
+                //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(1);
             }
         }
-            tama.setEstado(estado);
+        else if(estado instanceof Hambriento || estado instanceof Cansado){
+            if (tama.getEnergia() > 0 || tama.getHambre() < 40 || tama.getSueno() < 70) {
+                estado = tama.getNormal();
+            }
+        }
+        else if(tama.getEstadoActual() instanceof Muerto){
+            
+        }
+        tama.setEstado(estado);
     }
     
     

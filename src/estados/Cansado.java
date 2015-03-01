@@ -5,10 +5,8 @@
  */
 package estados;
 
-import java.awt.Label;
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
-import utileria.Utileria;
 
 /**
  *

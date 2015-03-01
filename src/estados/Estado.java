@@ -6,8 +6,6 @@
 
 package estados;
 
-import javax.media.j3d.Transform3D;
-
 /**
  *
  * @author Shinsnake

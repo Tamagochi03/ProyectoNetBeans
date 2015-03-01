@@ -25,7 +25,7 @@ public class BarraEnergia extends BarraEstado implements Runnable {
         while(true){
             contador --;
             tama.setEnergia(contador);
-            System.out.println(contador);//TODO:delete
+            System.out.println("Energia: " + contador);//TODO:delete
             try{
                 Thread.sleep(velocidad);
             }catch(Exception e){

@@ -6,7 +6,8 @@
 
 package estados;
 
-import java.awt.Label;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
 
@@ -14,7 +15,7 @@ import logica.MaquinaTamagochi;
  *
  * @author Shinsnake
  */
-public class Comiendo extends EstadoGeneral implements Estado{
+public class Comiendo extends EstadoGeneral implements Estado, Runnable{
     public Comiendo(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
@@ -35,16 +36,22 @@ public class Comiendo extends EstadoGeneral implements Estado{
         getMensajePensamiento().setText("Creo que no podría comer más!");
     }
     
-    @Override
     public void runThread(){
-        try{
+        Thread hilo;
+        hilo = new Thread(this);
+        hilo.start();
+    }
+    
+    @Override
+    public void run(){
+        try {
             Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Comiendo.class.getName()).log(Level.SEVERE, null, ex);
+        }
             getTama().getHiloEneregia().incremento(30);
             getTama().getHiloHambre().decremento(50);
             //TODO: Añadir aquí transformación sobre el modelo
-            setEstado(getTama().getNormal());
-        }catch (Exception e){
-            System.out.println("Error al dormir el hilo"); //TODO: delete , este metodo es solo para debug del manejo de hilos
-        }
+            setEstado(getTama().getNormal());        
     }
 }
